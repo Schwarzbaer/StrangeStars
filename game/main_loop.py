@@ -15,8 +15,6 @@ from wecs.panda3d.constants import CAMERA_MASK
 
 from stageflow.wecs import WECSStage
 
-from sky.stars import create_arcade_star_field
-
 
 ship = Aspect(
     [
@@ -112,7 +110,7 @@ non_player = Aspect(
 )
 
 
-def smiley_bumper():
+def default_ship_bumper():
     return {
         'bumper': dict(
             shape=CollisionSphere,
@@ -122,12 +120,22 @@ def smiley_bumper():
     }
 
 
-smiley = {
+ship_arrowhead = {
     wecs.panda3d.prototype.Geometry: dict(
-        file='models/smiley',
+        file='ship_arrowhead.bam',
     ),
     wecs.panda3d.character.BumpingMovement: dict(
-        solids=factory(smiley_bumper),
+        solids=factory(default_ship_bumper),
+    ),
+}
+
+
+ship_trident = {
+    wecs.panda3d.prototype.Geometry: dict(
+        file='ship_trident.bam',
+    ),
+    wecs.panda3d.character.BumpingMovement: dict(
+        solids=factory(default_ship_bumper),
     ),
 }
 
@@ -185,17 +193,16 @@ class MainGameStage(WECSStage):
             Data passed to this stage will be ignored.
         """
         base.win.set_clear_color((0, 0, 0, 1))
-        stars = create_arcade_star_field(num_stars=40000)
-        base.render.attach_new_node(stars)
+        base.loader.load_model('star_field.bam').reparent_to(base.render)
 
         player.add(
             base.ecs_world.create_entity(name="Player ship"),
-            overrides={**smiley, **spawn_point_1},
+            overrides={**ship_arrowhead, **spawn_point_1},
         )
 
         non_player.add(
             base.ecs_world.create_entity(name="NPC ship"),
-            overrides={**smiley, **spawn_point_2},
+            overrides={**ship_trident, **spawn_point_2},
         )
 
     def teardown(self, data):
