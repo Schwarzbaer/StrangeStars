@@ -110,12 +110,12 @@ non_player = Aspect(
 )
 
 
-def default_ship_bumper():
+def arrowhead_bumper():
     return {
         'bumper': dict(
             shape=CollisionSphere,
-            center=Vec3(0.0, 0.0, 1.0),
-            radius=0.7,
+            center=Vec3(0.0, 0.0, 0.0),
+            radius=1.0,
         ),
     }
 
@@ -125,9 +125,19 @@ ship_arrowhead = {
         file='ship_arrowhead.bam',
     ),
     wecs.panda3d.character.BumpingMovement: dict(
-        solids=factory(default_ship_bumper),
+        solids=factory(arrowhead_bumper),
     ),
 }
+
+
+def trident_bumper():
+    return {
+        'bumper': dict(
+            shape=CollisionSphere,
+            center=Vec3(0.0, 0.0, 0.0),
+            radius=2.0,
+        ),
+    }
 
 
 ship_trident = {
@@ -135,7 +145,7 @@ ship_trident = {
         file='ship_trident.bam',
     ),
     wecs.panda3d.character.BumpingMovement: dict(
-        solids=factory(default_ship_bumper),
+        solids=factory(trident_bumper),
     ),
 }
 
