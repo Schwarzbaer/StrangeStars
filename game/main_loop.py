@@ -84,8 +84,8 @@ npc_mind_constant = Aspect(
     ],
     overrides={
         wecs.panda3d.ai.ConstantCharacterAI: dict(
-            move=Vec3(0, 0.2, 0),
-            heading=1.0,
+            move=Vec3(0, 0.05, 0),
+            heading=0.3,
         ),
         wecs.panda3d.ai.BehaviorAI: dict(
             behavior=['constant'],
