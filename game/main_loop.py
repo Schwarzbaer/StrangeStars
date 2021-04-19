@@ -16,6 +16,20 @@ from wecs.panda3d.constants import CAMERA_MASK
 from stageflow.wecs import WECSStage
 
 
+game_map = Aspect(
+    [
+        wecs.panda3d.prototype.Model,
+        wecs.panda3d.prototype.Geometry,
+        wecs.panda3d.spawnpoints.SpawnMap,
+    ],
+    overrides={
+        wecs.panda3d.prototype.Geometry: dict(
+            file='star_field.bam',
+        ),
+    },
+)
+
+
 ship = Aspect(
     [
         wecs.mechanics.clock.Clock,
@@ -25,6 +39,7 @@ ship = Aspect(
         wecs.panda3d.character.WalkingMovement,
         wecs.panda3d.character.InertialMovement,
         wecs.panda3d.character.BumpingMovement,
+        wecs.panda3d.spawnpoints.SpawnAt,
     ],
     overrides={
         wecs.mechanics.clock.Clock: dict(
@@ -172,27 +187,28 @@ class MainGameStage(WECSStage):
     system_specs = [
         # Set up newly added models/camera, tear down removed ones
         (0, 0, wecs.panda3d.prototype.ManageModels),
-        (0, -1, wecs.panda3d.camera.PrepareCameras),
+        (0, -5, wecs.panda3d.spawnpoints.Spawn),
+        (0, -10, wecs.panda3d.camera.PrepareCameras),
         # Update clocks
-        (0, -2, wecs.mechanics.clock.DetermineTimestep),
+        (0, -20, wecs.mechanics.clock.DetermineTimestep),
         # Character AI
-        (0, -3, wecs.panda3d.ai.Think),
+        (0, -30, wecs.panda3d.ai.Think),
         # Character controller
-        (0, -4, wecs.panda3d.character.UpdateCharacter),
-        (0, -5, wecs.panda3d.character.Floating),
-        (0, -6, wecs.panda3d.character.Walking),
-        (0, -7, wecs.panda3d.character.Inertiing),
-        (0, -8, wecs.panda3d.character.Bumping),
-        (0, -11, wecs.panda3d.character.TurningBackToCamera),
-        (0, -12, wecs.panda3d.character.ExecuteMovement),
+        (0, -40, wecs.panda3d.character.UpdateCharacter),
+        (0, -50, wecs.panda3d.character.Floating),
+        (0, -60, wecs.panda3d.character.Walking),
+        (0, -70, wecs.panda3d.character.Inertiing),
+        (0, -80, wecs.panda3d.character.Bumping),
+        (0, -110, wecs.panda3d.character.TurningBackToCamera),
+        (0, -120, wecs.panda3d.character.ExecuteMovement),
         # Camera
-        (0, -15, wecs.panda3d.camera.ReorientObjectCentricCamera),
-        (0, -16, wecs.panda3d.camera.CollideCamerasWithTerrain),
+        (0, -150, wecs.panda3d.camera.ReorientObjectCentricCamera),
+        (0, -160, wecs.panda3d.camera.CollideCamerasWithTerrain),
         # WECS subconsoles
         # wecs.panda3d.cefconsole.UpdateWecsSubconsole,
         # wecs.panda3d.cefconsole.WatchEntitiesInSubconsole,
         # Debug keys (`escape` to close, etc.)
-        (0, -17, wecs.panda3d.debug.DebugTools),
+        (0, -170, wecs.panda3d.debug.DebugTools),
     ]
 
     def setup(self, data):
@@ -205,14 +221,27 @@ class MainGameStage(WECSStage):
         base.win.set_clear_color((0, 0, 0, 1))
         base.loader.load_model('star_field.bam').reparent_to(base.render)
 
+        map_entity = base.ecs_world.create_entity(name="Map")
+        game_map.add(map_entity)
+
         player.add(
             base.ecs_world.create_entity(name="Player ship"),
-            overrides={**ship_arrowhead, **spawn_point_1},
+            overrides={
+                wecs.panda3d.spawnpoints.SpawnAt: dict(
+                    name='spawn_player_ship',
+                ),
+                **ship_arrowhead,
+            },
         )
 
         non_player.add(
             base.ecs_world.create_entity(name="NPC ship"),
-            overrides={**ship_trident, **spawn_point_2},
+            overrides={
+                wecs.panda3d.spawnpoints.SpawnAt: dict(
+                    name='spawn_drone_ship',
+                ),
+                **ship_trident,
+            },
         )
 
     def teardown(self, data):
