@@ -67,7 +67,22 @@ geom.addPrimitive(line)
 
 node.addGeom(geom)
 
+# Wrap it all in a NodePath
+nodepath = NodePath(node)
+
+# Mount hints
+weapon_mount_0 = NodePath('mount:0')
+weapon_mount_0.reparent_to(nodepath)
+weapon_mount_0.set_pos(0, 0.5, 0)
+weapon_mount_1 = NodePath('mount:1')
+weapon_mount_1.reparent_to(nodepath)
+weapon_mount_1.set_pos(0, -0.5, 0)
+weapon_mount_2 = NodePath('mount:2')
+weapon_mount_2.reparent_to(nodepath)
+weapon_mount_2.set_pos(-0.5, 0,0)
+weapon_mount_3 = NodePath('mount:3')
+weapon_mount_3.reparent_to(nodepath)
+weapon_mount_3.set_pos(0.5, 0, 0)
 
 # Write
-nodepath = NodePath(node)
 nodepath.write_bam_file('ship_arrowhead.bam')
