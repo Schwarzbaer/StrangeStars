@@ -1,6 +1,7 @@
 import random
 
 from panda3d.core import NodePath
+from panda3d.core import AntialiasAttrib
 from panda3d.core import GeomVertexFormat
 from panda3d.core import GeomVertexData
 from panda3d.core import GeomVertexWriter
@@ -54,6 +55,8 @@ def create_arcade_star_field(num_stars=10000, layers=4, layer_exp=1.2,
 
 
 stars = NodePath(create_arcade_star_field(num_stars=40000))
+stars.set_antialias(AntialiasAttrib.MPoint)
+
 spawn_1 = stars.attach_new_node("spawn_player_ship")
 spawn_1.set_pos(0, 0, 0)
 spawn_2 = stars.attach_new_node("spawn_drone_ship")

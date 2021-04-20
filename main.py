@@ -20,6 +20,6 @@ def run_game():
 
 if __name__ == '__main__':
     # loadPrcFileData('', 'fullscreen true')
-    loadPrcFileData('', 'framebuffer-multisample 1')
-    loadPrcFileData('', 'multisamples 2')
+    loadPrcFileData('', 'framebuffer-multisample true')
+    loadPrcFileData('', 'multisamples 16')
     run_game()

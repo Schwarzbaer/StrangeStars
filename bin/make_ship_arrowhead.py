@@ -1,5 +1,5 @@
 from panda3d.core import NodePath
-
+from panda3d.core import AntialiasAttrib
 from panda3d.core import GeomVertexWriter
 from panda3d.core import GeomVertexFormat
 from panda3d.core import GeomVertexData
@@ -69,6 +69,7 @@ node.addGeom(geom)
 
 # Wrap it all in a NodePath
 nodepath = NodePath(node)
+nodepath.set_antialias(AntialiasAttrib.MLine)
 
 # Mount hints
 weapon_mount_0 = NodePath('mount:0')

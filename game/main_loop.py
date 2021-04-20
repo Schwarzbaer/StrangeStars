@@ -1,16 +1,8 @@
-from panda3d.core import AntialiasAttrib
 from panda3d.core import Point3
 from panda3d.core import Vec3
 from panda3d.core import CollisionSphere
 
 import wecs
-from wecs.core import ProxyType
-from wecs.aspects import Aspect
-from wecs.aspects import factory
-
-from wecs.panda3d.constants import FALLING_MASK
-from wecs.panda3d.constants import BUMPING_MASK
-from wecs.panda3d.constants import CAMERA_MASK
 
 from stageflow.wecs import WECSStage
 
@@ -61,7 +53,6 @@ class MainGameStage(WECSStage):
             Data passed to this stage will be ignored.
         """
         base.win.set_clear_color((0, 0, 0, 1))
-        base.render.setAntialias(AntialiasAttrib.MAuto)
         base.loader.load_model('star_field.bam').reparent_to(base.render)
 
         map_entity = base.ecs_world.create_entity(name="Map")

@@ -12,7 +12,7 @@ from wecs.aspects import factory
 
 @Component()
 class FireableWeapons:
-    weapons: dict = field(default_factory=dict)
+    weapons: dict = field(default_factory=dict) # mount -> weapon?
 
 
 ship = Aspect(
