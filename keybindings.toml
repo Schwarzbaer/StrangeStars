@@ -43,6 +43,18 @@
   spatial_mouse = "yaw:flip:scale=2,pitch"
   keyboard = "arrow_left,arrow_right,arrow_down,arrow_up"
 
+[weapons]
+
+  [weapons.primary]
+  _type = "button"
+  _device_order = ["keyboard"]
+  keyboard = "space"
+
+#  [weapons.secondary]
+#  _type = "button"
+#  _device_order = ["keyboard"]
+#  keyboard = "space"
+
 [camera_movement]
 
   [camera_movement.rotation]
@@ -54,10 +66,10 @@
   _type = "axis"
   _device_order = ["keyboard"]
   keyboard = "u,o"
-
-[clock_control]
-
-  [clock_control.time_zoom]
-  _type = "axis"
-  _device_order = ["keyboard"]
-  keyboard = "-,+"
+# 
+# [clock_control]
+# 
+#   [clock_control.time_zoom]
+#   _type = "axis"
+#   _device_order = ["keyboard"]
+#   keyboard = "-,+"

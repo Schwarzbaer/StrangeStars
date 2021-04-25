@@ -31,7 +31,7 @@ pc_mind = Aspect(
         wecs.panda3d.input.Input: dict(
             contexts=[
                 'character_movement',
-                'camera_movement',
+                'weapons',
             ],
         ),
     },

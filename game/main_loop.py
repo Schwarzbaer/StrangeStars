@@ -17,6 +17,36 @@ from .ships import ship_arrowhead
 from .ships import ship_trident
 
 
+from wecs.core import System, and_filter
+from wecs.panda3d.prototype import Model
+from wecs.panda3d.input import Input
+
+
+class FireWeapons(System):
+    entity_filters = {
+        'ship': and_filter([
+            Model,
+        ]),
+        'input': and_filter([
+            Model,
+            Input,
+        ]),
+    }
+    input_context = 'weapons'
+
+    def update(self, entities_by_filter):
+        for entity in entities_by_filter['input']:
+            input = entity[Input]
+            if self.input_context in input.contexts:
+                context = base.device_listener.read_context(self.input_context)
+                self.process_input(entity, context)
+
+    def process_input(self, entity, context):
+        if 'primary' in context and context['primary']:
+            print("Pew pew!")
+
+
+
 class MainGameStage(WECSStage):
     system_specs = [
         # Set up newly added models/camera, tear down removed ones
@@ -35,6 +65,8 @@ class MainGameStage(WECSStage):
         (0, -80, wecs.panda3d.character.Bumping),
         (0, -110, wecs.panda3d.character.TurningBackToCamera),
         (0, -120, wecs.panda3d.character.ExecuteMovement),
+        # Weapons
+        (0, -130, FireWeapons),
         # Camera
         (0, -150, wecs.panda3d.camera.ReorientObjectCentricCamera),
         (0, -160, wecs.panda3d.camera.CollideCamerasWithTerrain),
