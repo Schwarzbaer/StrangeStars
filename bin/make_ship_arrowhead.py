@@ -69,7 +69,7 @@ node.addGeom(geom)
 
 # Wrap it all in a NodePath
 nodepath = NodePath(node)
-nodepath.set_antialias(AntialiasAttrib.MLine | AntialiasAttrib.MBetter)
+# nodepath.set_antialias(AntialiasAttrib.MLine | AntialiasAttrib.MBetter)
 
 # Mount hints
 weapon_mount_0 = NodePath('mount:0')

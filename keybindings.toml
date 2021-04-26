@@ -47,7 +47,9 @@
 
   [weapons.primary]
   _type = "button"
-  _device_order = ["keyboard"]
+  _device_order = ["gamepad", "flight_stick", "keyboard"]
+  gamepad = "lshoulder"
+  flight_stick = "trigger"
   keyboard = "space"
 
 #  [weapons.secondary]
@@ -66,10 +68,3 @@
   _type = "axis"
   _device_order = ["keyboard"]
   keyboard = "u,o"
-# 
-# [clock_control]
-# 
-#   [clock_control.time_zoom]
-#   _type = "axis"
-#   _device_order = ["keyboard"]
-#   keyboard = "-,+"
