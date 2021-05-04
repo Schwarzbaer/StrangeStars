@@ -1,7 +1,9 @@
 Strange Stars
 =============
 
-I trust I don't need to point out the main inspiration for this game.
+I trust I don't need to point out the main inspiration for this game
+once you get it to run. If you can't, please come back in a while, this
+thing is in suuuch an early state...
 
 
 TODO
