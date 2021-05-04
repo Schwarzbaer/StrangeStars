@@ -14,7 +14,7 @@ from panda3d.core import Vec3
 from panda3d.core import VBase4
 
 
-def create_arcade_star_field(num_stars=10000, layers=4, layer_exp=1.2,
+def create_arcade_star_field(num_stars=10000, layers=4, layer_exp=0.8,
                              seed=0):
     # Set up the vertex arrays
     vformat = GeomVertexFormat.getV3c4()
@@ -29,7 +29,8 @@ def create_arcade_star_field(num_stars=10000, layers=4, layer_exp=1.2,
         for idx in range(0, num_stars):
             x = rng.gauss(0, 2000)
             y = rng.gauss(0, 2000)
-            z = ((2 ** layer) - 1) * -500
+            z = ((2 ** layer) - 0) * -250
+            # z = ((2 ** layer) - 1) * -500
             v = Vec3(x, y, z)
             col_vertex.addData3f(v)
 
@@ -37,7 +38,8 @@ def create_arcade_star_field(num_stars=10000, layers=4, layer_exp=1.2,
     rng = random.Random(seed)
     for layer in range(layers):
         for idx in range(0, num_stars):
-            l = 0.8 / ((layer + 1.) ** layer_exp)
+            l = 0.8 * (1 - layer / layers)
+            # l = 0.8 / ((layer + 1.) ** layer_exp)
             c = VBase4(l, l, l, 1)
             col_color.addData4f(c)
 
@@ -124,7 +126,7 @@ if __name__ == '__main__':
     stars.set_antialias(AntialiasAttrib.MPoint)
 
     grid = level.attach_new_node(
-        create_line_grid(size=10000, hlines=200),
+        create_line_grid(size=5000, hlines=200),
     )
     stars.set_antialias(AntialiasAttrib.MLine)
 
