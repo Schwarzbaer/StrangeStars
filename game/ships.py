@@ -23,6 +23,7 @@ ship = Aspect(
         wecs.panda3d.prototype.Geometry,
         wecs.panda3d.character.WalkingMovement,
         wecs.panda3d.character.InertialMovement,
+        wecs.panda3d.character.FrictionalMovement,
         wecs.panda3d.character.BumpingMovement,
         wecs.panda3d.spawnpoints.SpawnAt,
     ],
@@ -40,6 +41,7 @@ ship = Aspect(
         wecs.panda3d.character.InertialMovement: dict(
             acceleration=30.0,
             rotated_inertia=0.0,
+            delta_inputs=True,
         ),
     },
 )
@@ -62,6 +64,11 @@ ship_arrowhead = {
     wecs.panda3d.character.BumpingMovement: dict(
         solids=factory(arrowhead_bumper),
     ),
+    wecs.panda3d.character.WalkingMovement: dict(
+        speed=60.0,
+        backwards_multiplier=1.0,
+        turning_speed=90.0,
+    ),
 }
 
 
@@ -81,5 +88,10 @@ ship_trident = {
     ),
     wecs.panda3d.character.BumpingMovement: dict(
         solids=factory(trident_bumper),
+    ),
+    wecs.panda3d.character.WalkingMovement: dict(
+        speed=30.0,
+        backwards_multiplier=1.0,
+        turning_speed=90.0,
     ),
 }

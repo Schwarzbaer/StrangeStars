@@ -1,6 +1,7 @@
 from panda3d.core import Point3
 from panda3d.core import Vec3
 from panda3d.core import CollisionSphere
+from panda3d.core import WindowProperties
 
 import wecs
 
@@ -62,6 +63,8 @@ class MainGameStage(WECSStage):
         (0, -50, wecs.panda3d.character.Floating),
         (0, -60, wecs.panda3d.character.Walking),
         (0, -70, wecs.panda3d.character.Inertiing),
+        (0, -75, wecs.panda3d.character.Frictioning),
+        (0, -77, wecs.panda3d.character.WalkSpeedLimiting),
         (0, -80, wecs.panda3d.character.Bumping),
         (0, -110, wecs.panda3d.character.TurningBackToCamera),
         (0, -120, wecs.panda3d.character.ExecuteMovement),
@@ -84,6 +87,18 @@ class MainGameStage(WECSStage):
         data
             Data passed to this stage will be ignored.
         """
+        props = WindowProperties()
+
+        props.cursor_hidden = True
+        props.fixed_size = True
+        #props.foreground = True
+        props.origin = (0, 0)
+        props.size = (base.pipe.get_display_width(), base.pipe.get_display_height())#-27)
+        props.title = "Strange Stars"
+        #props.undecorated = True
+
+        base.win.requestProperties(props)
+
         base.win.set_clear_color((0, 0, 0, 1))
         base.loader.load_model('star_field.bam').reparent_to(base.render)
 
