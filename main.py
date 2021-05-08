@@ -21,4 +21,13 @@ def run_game():
 if __name__ == '__main__':
     # loadPrcFileData('', 'framebuffer-multisample true')
     # loadPrcFileData('', 'multisamples 16')
+
+    # loadPrcFileData('', 'cursor-hidden true')
+    # loadPrcFileData('', 'win-fixed-size true')
+    # loadPrcFileData('', 'win-origin 0 0')
+    # # props.size = (base.pipe.get_display_width(), base.pipe.get_display_height())
+    # loadPrcFileData('', 'win-size 1366 720')
+    # loadPrcFileData('', 'window-title Strange Stars')
+    # # loadPrcFileData('', 'undecorated true')
+
     run_game()

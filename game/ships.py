@@ -65,7 +65,7 @@ ship_arrowhead = {
         solids=factory(arrowhead_bumper),
     ),
     wecs.panda3d.character.WalkingMovement: dict(
-        speed=60.0,
+        speed=100.0,
         backwards_multiplier=1.0,
         turning_speed=90.0,
     ),

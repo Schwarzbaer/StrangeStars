@@ -87,17 +87,17 @@ class MainGameStage(WECSStage):
         data
             Data passed to this stage will be ignored.
         """
-        props = WindowProperties()
-
-        props.cursor_hidden = True
-        props.fixed_size = True
-        #props.foreground = True
-        props.origin = (0, 0)
-        props.size = (base.pipe.get_display_width(), base.pipe.get_display_height())#-27)
-        props.title = "Strange Stars"
-        #props.undecorated = True
-
-        base.win.requestProperties(props)
+        # props = WindowProperties()
+        # 
+        # props.cursor_hidden = True
+        # props.fixed_size = True
+        # #props.foreground = True
+        # props.origin = (0, 0)
+        # props.size = (base.pipe.get_display_width(), base.pipe.get_display_height())
+        # props.title = "Strange Stars"
+        # #props.undecorated = True
+        #
+        #base.win.requestProperties(props)
 
         base.win.set_clear_color((0, 0, 0, 1))
         base.loader.load_model('star_field.bam').reparent_to(base.render)

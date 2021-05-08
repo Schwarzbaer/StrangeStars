@@ -14,7 +14,7 @@ third_person = Aspect(
     overrides={
         wecs.panda3d.camera.ObjectCentricCameraMode: dict(
             focus_height=0,
-            distance=150.0,
+            distance=250.0,
             pitch=-90.0,
             min_pitch=-90.0,
             max_pitch=-90.0,
