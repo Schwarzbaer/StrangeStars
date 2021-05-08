@@ -12,6 +12,9 @@ from panda3d.core import GeomTriangles
 from panda3d.core import GeomNode
 
 
+scale = 15.0 # Length of ship in meters
+s = scale / 2.0  # Scale factor on unit ship
+
 node = GeomNode('geom_node')
 
 # Set up the vertex arrays
@@ -23,10 +26,10 @@ geom = Geom(vdata)
 col_vertex = GeomVertexWriter(vdata, 'vertex')
 col_color = GeomVertexWriter(vdata, 'color')
 
-col_vertex.addData3f(Vec3(0, 1, 0.5))
-col_vertex.addData3f(Vec3(1, -1, 0.5))
-col_vertex.addData3f(Vec3(0, -0.5, 0.5))
-col_vertex.addData3f(Vec3(-1, -1, 0.5))
+col_vertex.addData3f(Vec3(  0 * s,  1   * s, 0.5))
+col_vertex.addData3f(Vec3(  1 * s, -1   * s, 0.5))
+col_vertex.addData3f(Vec3(  0 * s, -0.5 * s, 0.5))
+col_vertex.addData3f(Vec3( -1 * s, -1   * s, 0.5))
 col_color.addData4f(Vec4(0, 0, 0, 1))
 col_color.addData4f(Vec4(0, 0, 0, 1))
 col_color.addData4f(Vec4(0, 0, 0, 1))
@@ -47,10 +50,10 @@ geom = Geom(vdata)
 col_vertex = GeomVertexWriter(vdata, 'vertex')
 col_color = GeomVertexWriter(vdata, 'color')
 
-col_vertex.addData3f(Vec3(0, 1, 1))
-col_vertex.addData3f(Vec3(1, -1, 1))
-col_vertex.addData3f(Vec3(0, -0.5, 1))
-col_vertex.addData3f(Vec3(-1, -1, 1))
+col_vertex.addData3f(Vec3( 0 * s,  1   * s, 1))
+col_vertex.addData3f(Vec3( 1 * s, -1   * s, 1))
+col_vertex.addData3f(Vec3( 0 * s, -0.5 * s, 1))
+col_vertex.addData3f(Vec3(-1 * s, -1   * s, 1))
 col_color.addData4f(Vec4(1, 1, 1, 1))
 col_color.addData4f(Vec4(1, 1, 1, 1))
 col_color.addData4f(Vec4(1, 1, 1, 1))
@@ -74,16 +77,16 @@ nodepath = NodePath(node)
 # Mount hints
 weapon_mount_0 = NodePath('mount:0')
 weapon_mount_0.reparent_to(nodepath)
-weapon_mount_0.set_pos(0, 0.5, 0)
+weapon_mount_0.set_pos(0 * s, 0.5 * s, 0)
 weapon_mount_1 = NodePath('mount:1')
 weapon_mount_1.reparent_to(nodepath)
-weapon_mount_1.set_pos(0, -0.5, 0)
+weapon_mount_1.set_pos(0 * s, -0.5 * s, 0)
 weapon_mount_2 = NodePath('mount:2')
 weapon_mount_2.reparent_to(nodepath)
-weapon_mount_2.set_pos(-0.5, 0,0)
+weapon_mount_2.set_pos(-0.5 * s, 0 * s, 0)
 weapon_mount_3 = NodePath('mount:3')
 weapon_mount_3.reparent_to(nodepath)
-weapon_mount_3.set_pos(0.5, 0, 0)
+weapon_mount_3.set_pos(0.5 * s, 0 * s, 0)
 
 # Write
 nodepath.write_bam_file('ship_arrowhead.bam')

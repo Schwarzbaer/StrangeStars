@@ -47,7 +47,8 @@ class BorderlessFullscreenMouseHidden(Stage):
 base.flow = Flow(
     stages=dict(
         resize=BorderlessFullscreenMouseHidden(
-            exit_stage='splashes',
+            # exit_stage='splashes',
+            exit_stage='main_game_stage',
         ),
         splashes=Panda3DSplash(
             exit_stage='main_game_stage',

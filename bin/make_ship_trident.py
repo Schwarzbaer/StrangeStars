@@ -12,6 +12,9 @@ from panda3d.core import GeomTriangles
 from panda3d.core import GeomNode
 
 
+scale = 30.0 # Length of ship in meters
+s = scale / 2.0  # Scale factor on unit ship
+
 node = GeomNode('geom_node')
 
 # Set up the vertex arrays
@@ -23,12 +26,12 @@ geom = Geom(vdata)
 col_vertex = GeomVertexWriter(vdata, 'vertex')
 col_color = GeomVertexWriter(vdata, 'color')
 
-col_vertex.addData3f(Vec3(0, 2, 0.5))
-col_vertex.addData3f(Vec3(2, -2, 0.5))
-col_vertex.addData3f(Vec3(1, -1, 0.5))
-col_vertex.addData3f(Vec3(0, -2, 0.5))
-col_vertex.addData3f(Vec3(-1, -1, 0.5))
-col_vertex.addData3f(Vec3(-2, -2, 0.5))
+col_vertex.addData3f(Vec3( 0 * s,  2 * s, 0.5))
+col_vertex.addData3f(Vec3( 2 * s, -2 * s, 0.5))
+col_vertex.addData3f(Vec3( 1 * s, -1 * s, 0.5))
+col_vertex.addData3f(Vec3( 0 * s, -2 * s, 0.5))
+col_vertex.addData3f(Vec3(-1 * s, -1 * s, 0.5))
+col_vertex.addData3f(Vec3(-2 * s, -2 * s, 0.5))
 col_color.addData4f(Vec4(0, 0, 0, 1))
 col_color.addData4f(Vec4(0, 0, 0, 1))
 col_color.addData4f(Vec4(0, 0, 0, 1))
@@ -54,12 +57,12 @@ geom = Geom(vdata)
 col_vertex = GeomVertexWriter(vdata, 'vertex')
 col_color = GeomVertexWriter(vdata, 'color')
 
-col_vertex.addData3f(Vec3(0, 2, 1))
-col_vertex.addData3f(Vec3(2, -2, 1))
-col_vertex.addData3f(Vec3(1, -1, 1))
-col_vertex.addData3f(Vec3(0, -2, 1))
-col_vertex.addData3f(Vec3(-1, -1, 1))
-col_vertex.addData3f(Vec3(-2, -2, 1))
+col_vertex.addData3f(Vec3( 0 * s,  2 * s, 1))
+col_vertex.addData3f(Vec3( 2 * s, -2 * s, 1))
+col_vertex.addData3f(Vec3( 1 * s, -1 * s, 1))
+col_vertex.addData3f(Vec3( 0 * s, -2 * s, 1))
+col_vertex.addData3f(Vec3(-1 * s, -1 * s, 1))
+col_vertex.addData3f(Vec3(-2 * s, -2 * s, 1))
 col_color.addData4f(Vec4(1, 1, 1, 1))
 col_color.addData4f(Vec4(1, 1, 1, 1))
 col_color.addData4f(Vec4(1, 1, 1, 1))

@@ -111,7 +111,8 @@ class MainGameStage(WECSStage):
                 wecs.panda3d.spawnpoints.SpawnAt: dict(
                     name='spawn_player_ship',
                 ),
-                **ship_arrowhead,
+                **ship_trident,
+                #**ship_arrowhead,
             },
         )
 
@@ -121,6 +122,7 @@ class MainGameStage(WECSStage):
                 wecs.panda3d.spawnpoints.SpawnAt: dict(
                     name='spawn_drone_ship',
                 ),
+                #**ship_arrowhead,
                 **ship_trident,
             },
         )

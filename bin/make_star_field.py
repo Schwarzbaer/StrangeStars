@@ -27,8 +27,8 @@ def create_arcade_star_field(num_stars=10000, layers=4, layer_exp=0.8,
     rng = random.Random(seed)
     for layer in range(layers):
         for idx in range(0, num_stars):
-            x = rng.gauss(0, 2000)
-            y = rng.gauss(0, 2000)
+            x = rng.gauss(0, 2000 * 7.5)
+            y = rng.gauss(0, 2000 * 7.5)
             z = ((2 ** layer) - 0) * -250
             # z = ((2 ** layer) - 1) * -500
             v = Vec3(x, y, z)
@@ -126,14 +126,14 @@ if __name__ == '__main__':
     stars.set_antialias(AntialiasAttrib.MPoint)
 
     grid = level.attach_new_node(
-        create_line_grid(size=5000, hlines=200),
+        create_line_grid(size=100000, hlines=400),
     )
     stars.set_antialias(AntialiasAttrib.MLine)
 
     spawn_1 = level.attach_new_node("spawn_player_ship")
     spawn_1.set_pos(0, 0, 0)
     spawn_2 = level.attach_new_node("spawn_drone_ship")
-    spawn_2.set_pos(0, 10, 0)
+    spawn_2.set_pos(0, 50, 0)
     level.write_bam_file('star_field.bam')
 else:
     print("What are you doing? This is meant to be a standalone program.")

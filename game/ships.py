@@ -34,12 +34,12 @@ ship = Aspect(
             ),
         ),
         wecs.panda3d.character.WalkingMovement: dict(
-            speed=120.0,
+            speed=0.0,
             backwards_multiplier=1.0,
-            turning_speed=90.0,
+            turning_speed=0.0,
         ),
         wecs.panda3d.character.InertialMovement: dict(
-            acceleration=30.0,
+            acceleration=0.0,
             rotated_inertia=0.0,
             delta_inputs=True,
         ),
@@ -52,7 +52,7 @@ def arrowhead_bumper():
         'bumper': dict(
             shape=CollisionSphere,
             center=Vec3(0.0, 0.0, 0.0),
-            radius=1.0,
+            radius=7.5,
         ),
     }
 
@@ -65,9 +65,14 @@ ship_arrowhead = {
         solids=factory(arrowhead_bumper),
     ),
     wecs.panda3d.character.WalkingMovement: dict(
-        speed=100.0,
-        backwards_multiplier=1.0,
+        speed=350.0,
         turning_speed=90.0,
+    ),
+    wecs.panda3d.character.InertialMovement: dict(
+        acceleration=500,#225.0,
+    ),
+    wecs.panda3d.character.FrictionalMovement: dict(
+        half_life=10.0,
     ),
 }
 
@@ -77,7 +82,7 @@ def trident_bumper():
         'bumper': dict(
             shape=CollisionSphere,
             center=Vec3(0.0, 0.0, 0.0),
-            radius=2.0,
+            radius=30.0,
         ),
     }
 
@@ -90,8 +95,10 @@ ship_trident = {
         solids=factory(trident_bumper),
     ),
     wecs.panda3d.character.WalkingMovement: dict(
-        speed=30.0,
-        backwards_multiplier=1.0,
-        turning_speed=90.0,
+        speed=200.0,
+        turning_speed=45.0,
+    ),
+    wecs.panda3d.character.InertialMovement: dict(
+        acceleration=50.0,
     ),
 }
