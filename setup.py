@@ -8,24 +8,30 @@ from os import path
 here = path.abspath(path.dirname(__file__))
 
 setup(
-    name='wecs-null-project',
+    name='strange-stars',
     version='0.0.1a',
-    description='A boilerplate for WECS-based games',
-    url='https://github.com/TheCheapestPixels/wecs-null-project',
+    description='An arcady space game',
+    url='https://github.com/Schwarzbaer/StrangeStars/',
     author='TheCheapestPixels',
     author_email='TheCheapestPixels@gmail.com',
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Intended Audience :: Developers',
-        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.9',
     ],
-    keywords='wecs',
+    keywords='',
     packages=find_packages(exclude=['tests']),
-    python_requires='>=3.7, <3.8',
-    install_requires=['wecs', 'panda3d', 'panda3d-cefconsole', 'panda3d-keybindings'],
+    python_requires='>=3.7',
+    install_requires=[
+        'toml',
+        'panda3d',
+        'panda3d-keybindings',
+        'panda3d-logos',
+        'panda3d-stageflow',
+        'wecs',
+    ],
     entry_points={
         'console_scripts': [
-            'wecs_null_game=main:run_game',
+            'StrangeStars=main:run_game',
         ],
     },
     # Deployment
@@ -36,19 +42,17 @@ setup(
                 '**/*.jpg',
                 '**/*.bam',
                 '**/*.toml',
-                '**/*.html',
             ],
             'include_modules': {
                 '*': [
                     'keybindings',
-                    # 'cefconsole',
-                    'urllib.request',  # Maybe hidden import in cefpython
+                    'game',
                 ],
             },
             'gui_apps': {
-                'WECS null game': 'main.py',
+                'Strange Stars': 'main.py',
             },
-            'log_filename': '$USER_APPDATA/wecs_null_game/output.log',
+            'log_filename': '$USER_APPDATA/StrangeStars/output.log',
             'log_append': False,
             'plugins': [
                 'pandagl',

@@ -111,8 +111,8 @@ class MainGameStage(WECSStage):
                 wecs.panda3d.spawnpoints.SpawnAt: dict(
                     name='spawn_player_ship',
                 ),
-                **ship_trident,
-                #**ship_arrowhead,
+                #**ship_trident,
+                **ship_arrowhead,
             },
         )
 
@@ -126,6 +126,17 @@ class MainGameStage(WECSStage):
                 **ship_trident,
             },
         )
+
+        for idx in range(0, 0):
+            non_player.add(
+                base.ecs_world.create_entity(name="NPC ship"),
+                overrides={
+                    wecs.panda3d.spawnpoints.SpawnAt: dict(
+                        name='spawn_{:02d}'.format(idx),
+                    ),
+                    **ship_arrowhead,
+                },
+            )
 
     def teardown(self, data):
         """

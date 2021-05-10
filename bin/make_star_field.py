@@ -130,10 +130,15 @@ if __name__ == '__main__':
     )
     stars.set_antialias(AntialiasAttrib.MLine)
 
-    spawn_1 = level.attach_new_node("spawn_player_ship")
+    spawn_1 = level.attach_new_node('spawn_player_ship')
     spawn_1.set_pos(0, 0, 0)
-    spawn_2 = level.attach_new_node("spawn_drone_ship")
+    spawn_2 = level.attach_new_node('spawn_drone_ship')
     spawn_2.set_pos(0, 50, 0)
+
+    for idx in range(0, 100):
+        spawn = level.attach_new_node('spawn_{:02d}'.format(idx))
+        spawn.set_pos((idx%10)*-20 - 20, (idx//10)*20 + 20, 0)
+
     level.write_bam_file('star_field.bam')
 else:
     print("What are you doing? This is meant to be a standalone program.")

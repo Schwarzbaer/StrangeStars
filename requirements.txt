@@ -1,4 +1,6 @@
 panda3d
-panda3d-cefconsole
-panda3d-keybindings
-wecs
+toml
+../panda3d-keybindings/dist/panda3d_keybindings-0.0.7b0-py2.py3-none-any.whl
+../panda3d-logos/dist/panda3d_logos-0.11-py2.py3-none-any.whl
+../panda3d-stageflow/dist/panda3d_stageflow-0.1b3-py2.py3-none-any.whl
+../wecs/dist/wecs-0.2.0a0-py2.py3-none-any.whl
